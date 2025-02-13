@@ -502,9 +502,6 @@ button.cancel-btn {
     document.getElementById('product-sold').innerText = sold;
     document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
     
-    let carousel = document.getElementById('product-carousel');
-    carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
-    
     document.getElementById('product-card').style.display = 'block';
     document.getElementById('product-card-overlay').style.display = 'block';
 
@@ -523,15 +520,6 @@ button.cancel-btn {
     // Toon de winkelwagen weer
     document.getElementById('cart-container').classList.add('show');
 }
-
-    window.addEventListener("resize", function () {
-    if (window.innerWidth > 450) {
-        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen altijd op grote schermen
-    } else if (document.getElementById("product-view").style.display === "block") {
-        document.getElementById("cart-container").style.display = "none"; // Verberg als product open is
-    } else {
-        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen als er geen product open is
-    }
 });
 
    function addToCart(brand, price) {
@@ -650,7 +638,7 @@ listItem.innerHTML = `${itemName} - ${item.price}`;
         }
         
         
-        function showOrderCard() {
+       function showOrderCard() {
     let overlay = document.createElement('div');
     overlay.id = "orderOverlay";
 
@@ -670,24 +658,31 @@ listItem.innerHTML = `${itemName} - ${item.price}`;
     confirmButton.textContent = "✅ Verstuur Bestelling";
     confirmButton.classList.add('confirm-btn');
 
-    // 🚀 Hier voegen we de event listener toe!
     confirmButton.addEventListener('click', function() {
         console.log("📧 Knop 'Verstuur Bestelling' is geklikt!");
         sendOrderEmail(cart);
         document.body.removeChild(overlay);
+        document.getElementById('cart-container').classList.add('show'); // Toon winkelwagen weer na bestelling
     });
 
     let closeButton = document.createElement('button');
     closeButton.textContent = "❌ Annuleren";
     closeButton.classList.add('cancel-btn');
-    closeButton.onclick = function () { document.body.removeChild(overlay); };
+    closeButton.onclick = function () { 
+        document.body.removeChild(overlay); 
+        document.getElementById('cart-container').classList.add('show'); // Toon winkelwagen terug als bestelling geannuleerd is
+    };
 
     orderCard.appendChild(orderList);
     orderCard.appendChild(confirmButton);
     orderCard.appendChild(closeButton);
     overlay.appendChild(orderCard);
     document.body.appendChild(overlay);
+
+    // **Verberg de winkelwagen als de orderCard actief is**
+    document.getElementById('cart-container').classList.remove('show');
 }
+
 
 
 // **Definitieve bestelling bevestigen**
