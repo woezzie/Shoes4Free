@@ -156,6 +156,7 @@
     transform: translateY(100%);
     opacity: 0;
     width: 250px;
+             z-index: 1000; /* Zorgt ervoor dat het boven de footer blijft */
 }
 
 #cart-container.show {
@@ -381,15 +382,14 @@ button.cancel-btn {
             padding-bottom: 10px;
         }
 
-.footer {
-    text-align: center;
-    background: #343a40;
-    color: white;
-    padding: 15px;
-    width: 100%;
-    position: sticky;
-    bottom: 0;
-}
+ .footer {
+            background: #343a40;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
 
 
 .footer a {
