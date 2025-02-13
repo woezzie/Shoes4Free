@@ -427,23 +427,21 @@ button.cancel-btn:hover {
         Shoes4Free - Mooie schoenen voor een prikkie
     </div>
     
-    <div class="content">
-        <h2>Onze Merken</h2>
-        <div class="brand-container">
-            <div class="brand">
-                <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
-            </div>
-            <div class="brand">
-                <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
-            </div>
-            <div class="brand">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_Adidas.png" alt="Adidas">
-            </div>
-            <div class="brand">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
-            </div>
+     <div class="brand-container">
+        <div class="brand" onclick="showProduct('Birkenstock', ['https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw0c9d8ba8/960813/960813.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwe841fcd9/960813/960813_sole.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw80a06843/960813/960813_top.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwbbb4b89e/960813/960813_detail-1.jpg'], 'GRATIS', '★★★★★', '20K+ verkocht', '€149,98')">
+            <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
+        </div>
+        <div class="brand" onclick="showProduct('Nike', ['https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/05ad502c-9699-4250-8988-376829beb9e3/WMNS+AIR+MAX+PLUS.png'], 'GRATIS', '★★★★☆', '50K+ verkocht', '€179,90')">
+            <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
+        </div>
+        <div class="brand" onclick="showProduct('Adidas', ['https://assets.adidas.com/images/h_2000,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/da088ca37e1b41abb518af630118a381_9366/Campus_00s_Schoenen_Zwart_HQ6638_04_standard.jpg'], 'GRATIS', '★★★★★', '35K+ verkocht', '€89,99')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_Adidas.png" alt="Adidas">
+        </div>
+        <div class="brand" onclick="showProduct('UGGs', ['https://dms.deckers.com/ugg/image/upload/f_auto,q_40,dpr_2/b_rgb:f4f2ee/w_1200/v1730914929/1116109-CHE_1.png?_s=RAABAB0'], 'GRATIS', '★★★★☆', '15K+ verkocht', '€179,95')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
         </div>
     </div>
+
     
     <div class="product-card-overlay" id="product-card-overlay" onclick="closeProduct()"></div>
     <div class="product-card" id="product-card">
@@ -504,16 +502,14 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('product-card').style.display = 'block';
     document.getElementById('product-card-overlay').style.display = 'block';
 
-    // // 🛒 **Winkelwagen verbergen bij productweergave**
-    // document.getElementById('cart-container').classList.remove('show');
+   
 }
 
 function closeProduct() {
     document.getElementById('product-card').style.display = 'none';
     document.getElementById('product-card-overlay').style.display = 'none';
 
-    // // 🛒 **Winkelwagen weer tonen na sluiten van product**
-    // document.getElementById('cart-container').classList.add('show');
+   
 }
 
 
@@ -695,13 +691,6 @@ function confirmOrder() {
 function closeConfirmation() {
     document.getElementById('confirmationMessage').remove();
 }
-        
-        
-        
-        
-        
-        
-        
         
         function showCelebrationMessage() {
     let message = document.getElementById('celebration-message');
