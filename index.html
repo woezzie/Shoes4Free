@@ -96,11 +96,6 @@
         padding: 8px;
     }
 }
-
-        #cart-container.hide {
-    transform: translateY(150%);
-    opacity: 0;
-}
         .product-card {
             display: none;
             position: fixed;
@@ -179,6 +174,12 @@
     transform: translateY(0);
     opacity: 1;
 }
+        #cart-container.hide {
+    transform: translateY(150%);
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 #cart-warning {
     color: red;
@@ -508,25 +509,34 @@ button.cancel-btn {
        let cart = [];
 
     function showProduct(brand, images, price, rating, sold, oldPrice) {
-        document.getElementById('product-brand').innerText = brand;
-        document.getElementById('product-price').innerText = "Prijs: " + price;
-        document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
-        document.getElementById('product-sold').innerText = sold;
-        document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
-        
-        let carousel = document.getElementById('product-carousel');
-        carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
-        
-        document.getElementById('product-card').style.display = 'block';
-        document.getElementById('product-card-overlay').style.display = 'block';
-        
-        document.querySelector('.cart-btn').onclick = function() {
-            addToCart(brand, price);
-        };
+    document.getElementById('product-brand').innerText = brand;
+    document.getElementById('product-price').innerText = "Prijs: " + price;
+    document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
+    document.getElementById('product-sold').innerText = sold;
+    document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
 
-        let cartContainer = document.getElementById('cart-container');
-    cartContainer.classList.add('hide');
-    }
+    let carousel = document.getElementById('product-carousel');
+    carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
+
+    document.getElementById('product-card').style.display = 'block';
+    document.getElementById('product-card-overlay').style.display = 'block';
+
+    document.querySelector('.cart-btn').onclick = function() {
+        addToCart(brand, price);
+    };
+
+    // 🚀 Verberg winkelwagen
+    document.getElementById('cart-container').classList.add('hide');
+}
+
+function closeProduct() {
+    document.getElementById('product-card').style.display = 'none';
+    document.getElementById('product-card-overlay').style.display = 'none';
+
+    // 🚀 Toon winkelwagen weer
+    document.getElementById('cart-container').classList.remove('hide');
+}
+
 
     function closeProduct() {
         document.getElementById('product-card').style.display = 'none';
@@ -534,15 +544,6 @@ button.cancel-btn {
 
         let cartContainer = document.getElementById('cart-container');
     cartContainer.classList.remove('hide');
-    }
-
-    window.addEventListener("resize", function () {
-    if (window.innerWidth > 450) {
-        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen altijd op grote schermen
-    } else if (document.getElementById("product-view").style.display === "block") {
-        document.getElementById("cart-container").style.display = "none"; // Verberg als product open is
-    } else {
-        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen als er geen product open is
     }
 });
 
@@ -565,6 +566,14 @@ button.cancel-btn {
     let cartContainer = document.getElementById('cart-container');
     let cartWarning = document.getElementById('cart-warning');
     let orderButton = document.getElementById('orderButton');
+
+    // 🚀 Controleer of een product wordt bekeken en verberg winkelwagen indien nodig
+    if (document.getElementById('product-card').style.display === 'block') {
+        cartContainer.classList.add('hide');
+        return;
+    } else {
+        cartContainer.classList.remove('hide');
+    }
 
     cartContainer.innerHTML = "<h3><i class='fa-solid fa-cart-shopping'></i> 🛒 Jouw Winkelwagen</h3>";
     cartContainer.appendChild(cartWarning);
@@ -592,8 +601,6 @@ button.cancel-btn {
         cart.forEach((item, index) => {
             let listItem = document.createElement('li');
             let itemName = item.brand ? item.brand : item.product;
-listItem.innerHTML = `${itemName} - ${item.price}`;
-
             listItem.innerHTML = `${itemName} - ${item.price}`;
 
             if (!item.fixed) {
@@ -631,6 +638,7 @@ listItem.innerHTML = `${itemName} - ${item.price}`;
 
     cartContainer.classList.add('show');
 }
+
 
         
          function removeFromCart(index) {
