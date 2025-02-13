@@ -497,27 +497,33 @@ button.cancel-btn {
        let cart = [];
 
     function showProduct(brand, images, price, rating, sold, oldPrice) {
-        document.getElementById('product-brand').innerText = brand;
-        document.getElementById('product-price').innerText = "Prijs: " + price;
-        document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
-        document.getElementById('product-sold').innerText = sold;
-        document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
-        
-        let carousel = document.getElementById('product-carousel');
-        carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
-        
-        document.getElementById('product-card').style.display = 'block';
-        document.getElementById('product-card-overlay').style.display = 'block';
-        
-        document.querySelector('.cart-btn').onclick = function() {
-            addToCart(brand, price);
-        };
-    }
+    document.getElementById('product-brand').innerText = brand;
+    document.getElementById('product-price').innerText = "Prijs: " + price;
+    document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
+    document.getElementById('product-sold').innerText = sold;
+    document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
+    
+    let carousel = document.getElementById('product-carousel');
+    carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
+    
+    document.getElementById('product-card').style.display = 'block';
+    document.getElementById('product-card-overlay').style.display = 'block';
+
+    // Verberg de winkelwagen
+    document.getElementById('cart-container').classList.remove('show');
+
+    document.querySelector('.cart-btn').onclick = function() {
+        addToCart(brand, price);
+    };
+}
 
     function closeProduct() {
-        document.getElementById('product-card').style.display = 'none';
-        document.getElementById('product-card-overlay').style.display = 'none';
-    }
+    document.getElementById('product-card').style.display = 'none';
+    document.getElementById('product-card-overlay').style.display = 'none';
+
+    // Toon de winkelwagen weer
+    document.getElementById('cart-container').classList.add('show');
+}
 
     window.addEventListener("resize", function () {
     if (window.innerWidth > 450) {
