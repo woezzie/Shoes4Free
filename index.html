@@ -7,9 +7,24 @@
     <title>Shoes4Free - Mooie schoenen voor een prikkie</title>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
+
+        .header {
+            background: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
                body {
             font-family: Arial, sans-serif;
-            background-color: #e3f2fd;
+            background-color: #f8f9fa;
+            color: #333;
             margin: 0;
             padding: 0;
             display: flex;
@@ -364,6 +379,28 @@ button.cancel-btn {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+        .footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 16px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer a {
+            color: #f8f9fa;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
 button.cancel-btn:hover {
     b
     </style>
@@ -386,20 +423,25 @@ button.cancel-btn:hover {
     <p>Het zijn feestelijke felicitaties dagen en u ontvangt een paar Nike Sokken geheel gratis bij uw bestelling!</p>
 </div>
 
-    <div class="header">Shoes4Free</div>
+    <div class="header">
+        Shoes4Free - Mooie schoenen voor een prikkie
+    </div>
     
-    <div class="brand-container">
-        <div class="brand" onclick="showProduct('Birkenstock', ['https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw0c9d8ba8/960813/960813.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwe841fcd9/960813/960813_sole.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw80a06843/960813/960813_top.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwbbb4b89e/960813/960813_detail-1.jpg'], 'GRATIS', '★★★★★', '20K+ verkocht', '€149,98')">
-            <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
-        </div>
-        <div class="brand" onclick="showProduct('Nike', ['https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/05ad502c-9699-4250-8988-376829beb9e3/WMNS+AIR+MAX+PLUS.png'], 'GRATIS', '★★★★☆', '50K+ verkocht', '€179,90')">
-            <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
-        </div>
-        <div class="brand" onclick="showProduct('Adidas', ['https://assets.adidas.com/images/h_2000,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/da088ca37e1b41abb518af630118a381_9366/Campus_00s_Schoenen_Zwart_HQ6638_04_standard.jpg'], 'GRATIS', '★★★★★', '35K+ verkocht', '€89,99')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_Adidas.png" alt="Adidas">
-        </div>
-        <div class="brand" onclick="showProduct('UGGs', ['https://dms.deckers.com/ugg/image/upload/f_auto,q_40,dpr_2/b_rgb:f4f2ee/w_1200/v1730914929/1116109-CHE_1.png?_s=RAABAB0'], 'GRATIS', '★★★★☆', '15K+ verkocht', '€179,95')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
+    <div class="content">
+        <h2>Onze Merken</h2>
+        <div class="brand-container">
+            <div class="brand">
+                <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
+            </div>
+            <div class="brand">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
+            </div>
+            <div class="brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_Adidas.png" alt="Adidas">
+            </div>
+            <div class="brand">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
+            </div>
         </div>
     </div>
     
@@ -429,6 +471,13 @@ button.cancel-btn:hover {
 </div>
 
     <div id="notification"></div>
+
+     <div class="footer">
+        &copy; 2025 Shoes4Free | <a href="#">Privacybeleid</a> | <a href="#">Contact</a> | 
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
     
 <script>
     
