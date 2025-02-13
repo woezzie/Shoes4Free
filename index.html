@@ -415,45 +415,77 @@ button.cancel-btn {
 
 
     </style>
-
+    
 </head>
 <body>
 
 <div class="login-overlay" id="login-overlay">
-    <div class="login-box">
-        <h2>Log in om verder te gaan</h2>
-        <input type="text" id="username" placeholder="Gebruikersnaam">
-        <input type="password" id="password" placeholder="Wachtwoord">
-        <button onclick="checkLogin()">Inloggen</button>
+        <div class="login-box">
+            <h2>Log in om verder te gaan</h2>
+            <input type="text" id="username" placeholder="Gebruikersnaam">
+            <input type="password" id="password" placeholder="Wachtwoord">
+            <button onclick="checkLogin()">Inloggen</button>
+        </div>
     </div>
+    
+    <div id="celebration-message">
+    <img src="https://www.knvbshop.nl/media/catalog/product/cache/d81c8dc66c69ceb69419c2e7e72e896d/1/1/116542_nike-everyday-lightweight-sportsokken-3-pack-wit.jpg" alt="Nike Sokken">
+    <h3>GEFELICITEERD!!! 🎉</h3>
+    <p>Het zijn feestelijke felicitaties dagen en u ontvangt een paar Nike Sokken geheel gratis bij uw bestelling!</p>
 </div>
 
-<div class="header">Shoes4Free - Mooie schoenen voor een prikkie</div>
+    <div class="header">Shoes4Free - Mooie schoenen voor een prikkie</div>
 
-<div class="brand-container">
-    <div class="brand" onclick="showProduct('Nike', 'GRATIS')">
-        <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
+    <div class="brand-title">Dit zijn onze merken</div>
+    
+    <div class="brand-container">
+        <div class="brand" onclick="showProduct('Birkenstock', ['https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw0c9d8ba8/960813/960813.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwe841fcd9/960813/960813_sole.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw80a06843/960813/960813_top.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwbbb4b89e/960813/960813_detail-1.jpg'], 'GRATIS', '★★★★★', '20K+ verkocht', '€149,98')">
+            <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
+        </div>
+        <div class="brand" onclick="showProduct('Nike', ['https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/05ad502c-9699-4250-8988-376829beb9e3/WMNS+AIR+MAX+PLUS.png'], 'GRATIS', '★★★★☆', '50K+ verkocht', '€179,90')">
+            <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
+        </div>
+        <div class="brand" onclick="showProduct('Adidas', ['https://assets.adidas.com/images/h_2000,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/da088ca37e1b41abb518af630118a381_9366/Campus_00s_Schoenen_Zwart_HQ6638_04_standard.jpg'], 'GRATIS', '★★★★★', '35K+ verkocht', '€89,99')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_Adidas.png" alt="Adidas">
+        </div>
+        <div class="brand" onclick="showProduct('UGGs', ['https://dms.deckers.com/ugg/image/upload/f_auto,q_40,dpr_2/b_rgb:f4f2ee/w_1200/v1730914929/1116109-CHE_1.png?_s=RAABAB0'], 'GRATIS', '★★★★☆', '15K+ verkocht', '€179,95')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
+        </div>
     </div>
-</div>
-
-<div class="product-card-overlay" id="product-card-overlay" onclick="closeProduct()"></div>
-<div class="product-card" id="product-card">
-    <button class="close-btn" onclick="closeProduct()">✖</button>
-    <h3 id="product-brand"></h3>
-    <p id="product-price"></p>
-    <button class="cart-btn" onclick="addToCart()">In winkelwagen</button>
-</div>
-
-<div id="cart-container">
-    <h3>🛒 Winkelwagen</h3>
+    
+    <div class="product-card-overlay" id="product-card-overlay" onclick="closeProduct()"></div>
+    <div class="product-card" id="product-card">
+        <button class="close-btn" onclick="closeProduct()">&times;</button>
+        <h3 id="product-brand"></h3>
+        <div class="carousel" id="product-carousel"></div>
+        <p id="product-price"></p>
+        <p id="product-rating"></p>
+        <p id="product-sold"></p>
+        <p><del id="product-old-price"></del> <strong>SALE!</strong></p>
+        <button class="cart-btn">Plaats in winkelwagen</button>
+    </div>
+    
+       <div id="cart-container">
+    <h2>🛒 Jouw Winkelwagen</h2>
     <ul id="cartList"></ul>
-    <button onclick="placeOrder()">Bestellen</button>
+    <p id="cart-warning">Je mag maximaal 3 producten per bestelling!</p>
+    <button id="orderButton" disabled>Bestel</button>
 </div>
 
-<div id="notification"></div>
+<div id="orderForm" style="display: none;">
+    <h3>Controleer je bestelling</h3>
+    <ul id="orderList"></ul>
+    <button id="submitOrder">Verstuur</button>
+</div>
+
+    <div id="notification"></div>
+
+    <div class="footer">
+        &copy; 2025 Shoes4Free | <a href="#">Privacybeleid</a> | <a href="#">Contact</a>
+    </div>
     
 <script>
-        
+
     document.addEventListener("DOMContentLoaded", function() {
     if (typeof emailjs === "undefined") {
         console.error("❌ EmailJS is niet correct geladen!");
@@ -461,43 +493,46 @@ button.cancel-btn {
     }
     emailjs.init("ueuhIBslUeTq4qXWs"); 
 });
-
-    function checkLogin() {
-        let username = document.getElementById('username').value.trim();
-        let password = document.getElementById('password').value.trim();
-        if (username === "ilse" && password === "ilse23") {
-            document.getElementById('login-overlay').style.display = 'none';
-        } else {
-            alert("❌ Onjuiste gegevens!");
-        }
-    }
               
        let cart = [];
 
     function showProduct(brand, images, price, rating, sold, oldPrice) {
-    document.getElementById('product-brand').innerText = brand;
-    document.getElementById('product-price').innerText = "Prijs: " + price;
-    document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
-    document.getElementById('product-sold').innerText = sold;
-    document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
+        document.getElementById('product-brand').innerText = brand;
+        document.getElementById('product-price').innerText = "Prijs: " + price;
+        document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
+        document.getElementById('product-sold').innerText = sold;
+        document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
         
-    document.querySelector('.cart-btn').onclick = function() {
-        addToCart(brand, price);
-    };
-    document.getElementById('cart-container').classList.add('hide');
-}
+        let carousel = document.getElementById('product-carousel');
+        carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
+        
+        document.getElementById('product-card').style.display = 'block';
+        document.getElementById('product-card-overlay').style.display = 'block';
+        
+        document.querySelector('.cart-btn').onclick = function() {
+            addToCart(brand, price);
+        };
+    }
 
-function closeProduct() {
-    document.getElementById('product-card').style.display = 'none';
-    document.getElementById('product-card-overlay').style.display = 'none';
+    function closeProduct() {
+        document.getElementById('product-card').style.display = 'none';
+        document.getElementById('product-card-overlay').style.display = 'none';
+    }
 
-    document.getElementById('cart-container').classList.remove('hide');
-}
+    window.addEventListener("resize", function () {
+    if (window.innerWidth > 450) {
+        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen altijd op grote schermen
+    } else if (document.getElementById("product-view").style.display === "block") {
+        document.getElementById("cart-container").style.display = "none"; // Verberg als product open is
+    } else {
+        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen als er geen product open is
+    }
+});
 
    function addToCart(brand, price) {
     if (!cart.some(item => item.product === 'Nike Sokken')) {
         cart.unshift({ product: 'Nike Sokken', price: 'GRATIS', fixed: true });
-        showCelebrationMessage(); 
+        showCelebrationMessage(); // 🎉 Laat de melding en confetti zien!
     }
     if (cart.length >= 3) {
         return;
@@ -513,14 +548,6 @@ function closeProduct() {
     let cartContainer = document.getElementById('cart-container');
     let cartWarning = document.getElementById('cart-warning');
     let orderButton = document.getElementById('orderButton');
-
-    // 🚀 Controleer of een product wordt bekeken en verberg winkelwagen indien nodig
-    if (document.getElementById('product-card').style.display === 'block') {
-        cartContainer.classList.add('hide');
-        return;
-    } else {
-        cartContainer.classList.remove('hide');
-    }
 
     cartContainer.innerHTML = "<h3><i class='fa-solid fa-cart-shopping'></i> 🛒 Jouw Winkelwagen</h3>";
     cartContainer.appendChild(cartWarning);
@@ -548,6 +575,8 @@ function closeProduct() {
         cart.forEach((item, index) => {
             let listItem = document.createElement('li');
             let itemName = item.brand ? item.brand : item.product;
+listItem.innerHTML = `${itemName} - ${item.price}`;
+
             listItem.innerHTML = `${itemName} - ${item.price}`;
 
             if (!item.fixed) {
@@ -586,7 +615,6 @@ function closeProduct() {
     cartContainer.classList.add('show');
 }
 
-
         
          function removeFromCart(index) {
             if (!cart[index].fixed) {
@@ -605,7 +633,18 @@ function closeProduct() {
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 2000);
-        }     
+        }
+        
+        function checkLogin() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            if (password === "ilse23" & username === "ilse") {
+                document.getElementById('login-overlay').style.display = 'none';
+            } else {
+                alert('Onjuist wachtwoord. Probeer opnieuw.');
+            }
+        }
+        
         
         function showOrderCard() {
     let overlay = document.createElement('div');
