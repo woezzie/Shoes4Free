@@ -52,9 +52,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
             margin-top: 50px;
-            padding: 10px;
+            padding: 5px;
         }
         .brand {
             background: white;
@@ -64,8 +64,8 @@
             transition: transform 0.3s ease;
             cursor: pointer;
             text-align: center;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -84,6 +84,12 @@
                 height: 120px;
             }
         }
+        @media (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+    }
         .product-card {
             display: none;
             position: fixed;
@@ -91,12 +97,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 500px;
-            max-width: 90%;
+            width: 90%;
+            max-width: 350px;
         }
         .product-card-overlay {
             position: fixed;
@@ -111,7 +117,7 @@
             display: flex;
             overflow: hidden;
             width: 100%;
-            height: 300px;
+            height: 250px;
             position: relative;
         }
         .carousel img {
@@ -144,16 +150,16 @@
     }
      #cart-container {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 5%;
     background: white;
-    padding: 15px;
+    padding: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateY(100%);
     opacity: 0;
-    width: 250px;
+    width: 90%;
 }
 
 #cart-container.show {
@@ -431,44 +437,42 @@ button.cancel-btn:hover {
     <div id="notification"></div>
     
 <script>
-console.log(typeof emailjs);
+    
 document.addEventListener("DOMContentLoaded", function() {
     if (typeof emailjs === "undefined") {
         console.error("❌ EmailJS is niet correct geladen!");
         return;
     }
-
-    emailjs.init("ueuhIBslUeTq4qXWs");  // Vervang dit met jouw echte EmailJS User ID
-    console.log("✅ EmailJS is correct geïnitialiseerd!");
+    emailjs.init("ueuhIBslUeTq4qXWs"); 
 });
-
-    console.log("User ID:", emailjs.init("ueuhIBslUeTq4qXWs"));
-
-              
+             
        let cart = [];
 
-    function showProduct(brand, images, price, rating, sold, oldPrice) {
-        document.getElementById('product-brand').innerText = brand;
-        document.getElementById('product-price').innerText = "Prijs: " + price;
-        document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
-        document.getElementById('product-sold').innerText = sold;
-        document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
-        
-        let carousel = document.getElementById('product-carousel');
-        carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
-        
-        document.getElementById('product-card').style.display = 'block';
-        document.getElementById('product-card-overlay').style.display = 'block';
-        
-        document.querySelector('.cart-btn').onclick = function() {
-            addToCart(brand, price);
-        };
-    }
+   function showProduct(brand, images, price, rating, sold, oldPrice) {
+    document.getElementById('product-brand').innerText = brand;
+    document.getElementById('product-price').innerText = "Prijs: " + price;
+    document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
+    document.getElementById('product-sold').innerText = sold;
+    document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
+    
+    let carousel = document.getElementById('product-carousel');
+    carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
+    
+    document.getElementById('product-card').style.display = 'block';
+    document.getElementById('product-card-overlay').style.display = 'block';
 
-    function closeProduct() {
-        document.getElementById('product-card').style.display = 'none';
-        document.getElementById('product-card-overlay').style.display = 'none';
-    }
+    // 🛒 **Winkelwagen verbergen bij productweergave**
+    document.getElementById('cart-container').classList.remove('show');
+}
+
+function closeProduct() {
+    document.getElementById('product-card').style.display = 'none';
+    document.getElementById('product-card-overlay').style.display = 'none';
+
+    // 🛒 **Winkelwagen weer tonen na sluiten van product**
+    document.getElementById('cart-container').classList.add('show');
+}
+
 
    function addToCart(brand, price) {
     if (!cart.some(item => item.product === 'Nike Sokken')) {
