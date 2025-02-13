@@ -425,8 +425,7 @@ button.cancel-btn {
 
 <div class="login-overlay" id="login-overlay">
         <div class="login-box">
-            <h2>Log in om verder te gaan</h2>
-            <input type="text" id="username" placeholder="Gebruikersnaam">
+            <h2 style="font-size:12px;">Voer code in om verder te gaan</h2>
             <input type="password" id="password" placeholder="Wachtwoord">
             <button onclick="checkLogin()">Inloggen</button>
         </div>
@@ -646,9 +645,8 @@ listItem.innerHTML = `${itemName} - ${item.price}`;
         }
         
         function checkLogin() {
-            let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
-            if (password === "ilse23" & username === "ilse") {
+            if (password === "ilse23") {
                 document.getElementById('login-overlay').style.display = 'none';
             } else {
                 alert('Onjuist wachtwoord. Probeer opnieuw.');
