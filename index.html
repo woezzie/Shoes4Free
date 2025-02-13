@@ -462,6 +462,14 @@ button.cancel-btn:hover {
     </div>
     
 <script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+    if (typeof emailjs === "undefined") {
+        console.error("❌ EmailJS is niet correct geladen!");
+        return;
+    }
+    emailjs.init("ueuhIBslUeTq4qXWs"); 
+});
               
        let cart = [];
 
