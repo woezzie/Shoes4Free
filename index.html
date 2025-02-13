@@ -661,14 +661,17 @@ function closeProduct() {
         }
         
         function checkLogin() {
-            let username = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
-            if (password === "ilse23" & username === "ilse") {
-                document.getElementById('login-overlay').style.display = 'none';
-            } else {
-                alert('Onjuist wachtwoord. Probeer opnieuw.');
-            }
-        }
+    let username = document.getElementById('username').value.trim();
+    let password = document.getElementById('password').value.trim();
+
+    if (username === "ilse" && password === "ilse23") {
+        document.getElementById('login-overlay').style.display = 'none'; // ✅ Verberg inlogscherm
+        document.body.style.overflow = "auto"; // ✅ Schakel scrollen weer in
+    } else {
+        alert('❌ Onjuiste gebruikersnaam of wachtwoord. Probeer opnieuw.');
+    }
+}
+
         
         
         function showOrderCard() {
