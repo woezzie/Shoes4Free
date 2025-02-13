@@ -35,7 +35,7 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-       .login-box input {
+        .login-box input {
             display: block;
             width: 60%;
             padding: 10px;
@@ -49,12 +49,34 @@
             border: none;
             cursor: pointer;
         }
+        .header {
+            text-align: center;
+            background: #3B82F6;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .footer {
+            text-align: center;
+            background: #343a40;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
         .brand-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            margin-top: 50px;
+            margin-top: 100px;
             padding: 10px;
         }
         .brand {
@@ -74,186 +96,29 @@
         .brand:hover {
             transform: scale(1.1);
         }
-        .brand img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        @media (max-width: 600px) {
-            .brand {
-                width: 120px;
-                height: 120px;
-            }
-            .header {
-        font-size: 18px;
-        padding: 10px;
-    }
-        }
-
-        @media (max-width: 400px) {
-    .header {
-        font-size: 16px;
-        padding: 8px;
-    }
-}
-        .product-card {
+        .product-card-overlay, .product-card {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
-            width: 500px;
-            max-width: 90%;
         }
-        .product-card-overlay {
+        #cart-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
             display: none;
         }
-        .carousel {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
-            height: 300px;
-            position: relative;
-        }
-        .carousel img {
-            width: 100%;
-            display: none;
-        }
-        .carousel img.active {
-            display: block;
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            color: black;
-            font-size: 24px;
-            border: none;
-            cursor: pointer;
-        }
-        .cart-btn {
-            background: #0288d1;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-         .header img {
-        height: 50px;
-    }
-     #cart-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: white;
-    padding: 15px;
-         margin-bottom: 25%px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    transform: translateY(100%);
-    opacity: 0;
-    width: 250px;
-             z-index: 1000; /* Zorgt ervoor dat het boven de footer blijft */
-}
-
-#cart-container.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-        #cart-container.hide {
-    transform: translateY(150%);
-    opacity: 0;
-    pointer-events: none;
-}
-
-
-#cart-warning {
-    color: red;
-    font-weight: bold;
-    display: none;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-ul#cartList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul#cartList li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-button.remove-btn {
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 8px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-button.order-btn {
-    background: #0288d1;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-button.remove-btn:hover {
-    background: darkred;
-}
-
-button.order-btn:hover {
-    background: darkblue;
-}
-    .remove-btn {
-        background: red;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-    .notification {
-        position: fixed;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: green;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-    }
-    #notification {
+        .notification {
             position: fixed;
             bottom: 80px;
             right: 20px;
@@ -263,241 +128,45 @@ button.order-btn:hover {
             border-radius: 5px;
             display: none;
         }
-    .notification.show {
-        opacity: 1;
-    }
-    #celebration-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    display: none;
-    z-index: 1000;
-}
-
-#celebration-message img {
-    width: 100px;
-    margin-bottom: 10px;
-}
-
-.confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background: red;
-    opacity: 0.7;
-    border-radius: 50%;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-}
-
-#orderButton {
-    padding: 10px;
-    background-color: #0288d1;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-#orderOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#orderCard {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-#orderCard ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-}
-
-#orderCard ul li {
-    background: #f1f1f1;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-button.confirm-btn {
-    background: blue;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-button.confirm-btn:hover {
-    background: darkblue;
-}
-
-button.cancel-btn {
-    background: grey;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-#confirmationMessage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-        .header {
-                text-align: center;
-            background: #3B82F6;
-            color: white;
-            padding: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            padding-bottom: 10px;
-        }
-
- .footer {
-     text-align: center;
-            background: #343a40;
-            color: white;
-            padding: 15px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-.footer a {
-    color: #f8f9fa;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-    .brand-title {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px 0;
-    color: #333;
-        display: block; 
-    visibility: visible;
-}
-
-
     </style>
-    
 </head>
 <body>
 
 <div class="login-overlay" id="login-overlay">
-        <div class="login-box">
-            <h2>Log in om verder te gaan</h2>
-            <input type="text" id="username" placeholder="Gebruikersnaam">
-            <input type="password" id="password" placeholder="Wachtwoord">
-            <button onclick="checkLogin()">Inloggen</button>
-        </div>
+    <div class="login-box">
+        <h2>Log in om verder te gaan</h2>
+        <input type="text" id="username" placeholder="Gebruikersnaam">
+        <input type="password" id="password" placeholder="Wachtwoord">
+        <button onclick="checkLogin()">Inloggen</button>
     </div>
-    
-    <div id="celebration-message">
-    <img src="https://www.knvbshop.nl/media/catalog/product/cache/d81c8dc66c69ceb69419c2e7e72e896d/1/1/116542_nike-everyday-lightweight-sportsokken-3-pack-wit.jpg" alt="Nike Sokken">
-    <h3>GEFELICITEERD!!! 🎉</h3>
-    <p>Het zijn feestelijke felicitaties dagen en u ontvangt een paar Nike Sokken geheel gratis bij uw bestelling!</p>
 </div>
 
-    <div class="header">Shoes4Free - Mooie schoenen voor een prikkie</div>
+<div class="header">Shoes4Free - Mooie schoenen voor een prikkie</div>
 
-    <div class="brand-title">Dit zijn onze merken</div>
-    
-    <div class="brand-container">
-        <div class="brand" onclick="showProduct('Birkenstock', ['https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw0c9d8ba8/960813/960813.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwe841fcd9/960813/960813_sole.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw80a06843/960813/960813_top.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwbbb4b89e/960813/960813_detail-1.jpg'], 'GRATIS', '★★★★★', '20K+ verkocht', '€149,98')">
-            <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
-        </div>
-        <div class="brand" onclick="showProduct('Nike', ['https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/05ad502c-9699-4250-8988-376829beb9e3/WMNS+AIR+MAX+PLUS.png'], 'GRATIS', '★★★★☆', '50K+ verkocht', '€179,90')">
-            <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
-        </div>
-        <div class="brand" onclick="showProduct('Adidas', ['https://assets.adidas.com/images/h_2000,f_auto,q_auto:sensitive,fl_lossy,c_fill,g_auto/da088ca37e1b41abb518af630118a381_9366/Campus_00s_Schoenen_Zwart_HQ6638_04_standard.jpg'], 'GRATIS', '★★★★★', '35K+ verkocht', '€89,99')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Logo_Adidas.png" alt="Adidas">
-        </div>
-        <div class="brand" onclick="showProduct('UGGs', ['https://dms.deckers.com/ugg/image/upload/f_auto,q_40,dpr_2/b_rgb:f4f2ee/w_1200/v1730914929/1116109-CHE_1.png?_s=RAABAB0'], 'GRATIS', '★★★★☆', '15K+ verkocht', '€179,95')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
-        </div>
+<div class="brand-container">
+    <div class="brand" onclick="showProduct('Nike', 'GRATIS')">
+        <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="Nike">
     </div>
-    
-    <div class="product-card-overlay" id="product-card-overlay" onclick="closeProduct()"></div>
-    <div class="product-card" id="product-card">
-        <button class="close-btn" onclick="closeProduct()">&times;</button>
-        <h3 id="product-brand"></h3>
-        <div class="carousel" id="product-carousel"></div>
-        <p id="product-price"></p>
-        <p id="product-rating"></p>
-        <p id="product-sold"></p>
-        <p><del id="product-old-price"></del> <strong>SALE!</strong></p>
-        <button class="cart-btn">Plaats in winkelwagen</button>
-    </div>
-    
-       <div id="cart-container">
-    <h2>🛒 Jouw Winkelwagen</h2>
+</div>
+
+<div class="product-card-overlay" id="product-card-overlay" onclick="closeProduct()"></div>
+<div class="product-card" id="product-card">
+    <button class="close-btn" onclick="closeProduct()">✖</button>
+    <h3 id="product-brand"></h3>
+    <p id="product-price"></p>
+    <button class="cart-btn" onclick="addToCart()">In winkelwagen</button>
+</div>
+
+<div id="cart-container">
+    <h3>🛒 Winkelwagen</h3>
     <ul id="cartList"></ul>
-    <p id="cart-warning">Je mag maximaal 3 producten per bestelling!</p>
-    <button id="orderButton" disabled>Bestel</button>
+    <button onclick="placeOrder()">Bestellen</button>
 </div>
 
-<div id="orderForm" style="display: none;">
-    <h3>Controleer je bestelling</h3>
-    <ul id="orderList"></ul>
-    <button id="submitOrder">Verstuur</button>
-</div>
-
-    <div id="notification"></div>
-
-    <div class="footer">
-        &copy; 2025 Shoes4Free | <a href="#">Privacybeleid</a> | <a href="#">Contact</a>
-    </div>
+<div id="notification"></div>
     
 <script>
-
+        
     document.addEventListener("DOMContentLoaded", function() {
     if (typeof emailjs === "undefined") {
         console.error("❌ EmailJS is niet correct geladen!");
@@ -505,6 +174,16 @@ button.cancel-btn {
     }
     emailjs.init("ueuhIBslUeTq4qXWs"); 
 });
+
+    function checkLogin() {
+        let username = document.getElementById('username').value.trim();
+        let password = document.getElementById('password').value.trim();
+        if (username === "ilse" && password === "ilse23") {
+            document.getElementById('login-overlay').style.display = 'none';
+        } else {
+            alert("❌ Onjuiste gegevens!");
+        }
+    }
               
        let cart = [];
 
@@ -514,18 +193,10 @@ button.cancel-btn {
     document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
     document.getElementById('product-sold').innerText = sold;
     document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
-
-    let carousel = document.getElementById('product-carousel');
-    carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
-
-    document.getElementById('product-card').style.display = 'block';
-    document.getElementById('product-card-overlay').style.display = 'block';
-
+        
     document.querySelector('.cart-btn').onclick = function() {
         addToCart(brand, price);
     };
-
-    // 🚀 Verberg winkelwagen
     document.getElementById('cart-container').classList.add('hide');
 }
 
@@ -533,24 +204,13 @@ function closeProduct() {
     document.getElementById('product-card').style.display = 'none';
     document.getElementById('product-card-overlay').style.display = 'none';
 
-    // 🚀 Toon winkelwagen weer
     document.getElementById('cart-container').classList.remove('hide');
 }
-
-
-    function closeProduct() {
-        document.getElementById('product-card').style.display = 'none';
-        document.getElementById('product-card-overlay').style.display = 'none';
-
-        let cartContainer = document.getElementById('cart-container');
-    cartContainer.classList.remove('hide');
-    }
-});
 
    function addToCart(brand, price) {
     if (!cart.some(item => item.product === 'Nike Sokken')) {
         cart.unshift({ product: 'Nike Sokken', price: 'GRATIS', fixed: true });
-        showCelebrationMessage(); // 🎉 Laat de melding en confetti zien!
+        showCelebrationMessage(); 
     }
     if (cart.length >= 3) {
         return;
@@ -658,21 +318,7 @@ function closeProduct() {
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 2000);
-        }
-        
-        function checkLogin() {
-    let username = document.getElementById('username').value.trim();
-    let password = document.getElementById('password').value.trim();
-
-    if (username === "ilse" && password === "ilse23") {
-        document.getElementById('login-overlay').style.display = 'none'; // ✅ Verberg inlogscherm
-        document.body.style.overflow = "auto"; // ✅ Schakel scrollen weer in
-    } else {
-        alert('❌ Onjuiste gebruikersnaam of wachtwoord. Probeer opnieuw.');
-    }
-}
-
-        
+        }     
         
         function showOrderCard() {
     let overlay = document.createElement('div');
