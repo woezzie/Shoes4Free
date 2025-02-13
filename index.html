@@ -700,7 +700,7 @@ function sendOrderEmail(cart) {
         return;
     }
 
-    emailjs.init("wfXWFVmJdw2DD1s-VF23H");
+    emailjs.init("WlZUSYDmT-IPtFvOM");
 
     let orderDetails = cart.map(item => `${item.product || item.brand} - ${item.price}`).join('\n');
 
