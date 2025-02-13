@@ -651,6 +651,10 @@ listItem.innerHTML = `${itemName} - ${item.price}`;
         
         
         function showOrderCard() {
+
+            // Winkelwagen verbergen
+        document.getElementById('cart-container').classList.remove('show');
+            
     let overlay = document.createElement('div');
     overlay.id = "orderOverlay";
 
