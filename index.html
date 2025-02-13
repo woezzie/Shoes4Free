@@ -740,12 +740,12 @@ function sendOrderEmail(cart) {
         return;
     }
 
-    emailjs.init("wfXWFVmJdw2DD1s-VF23H");
+    emailjs.init("ueuhIBslUeTq4qXWs");
 
     let orderDetails = cart.map(item => `${item.product || item.brand} - ${item.price}`).join('\n');
 
     let templateParams = {
-        to_email: "barendvanuden@gmail.com",
+        to_email: "ilsewiltshoppen@gmail.com",
         order_details: orderDetails
     };
 
