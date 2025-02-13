@@ -85,10 +85,10 @@
                 height: 120px;
             }
         }
-        @media (max-width: 450px) {
-    .cart-container {
-        display: none; 
-    }
+
+        #cart-container.hide {
+    transform: translateY(150%);
+    opacity: 0;
 }
         .product-card {
             display: none;
@@ -512,11 +512,17 @@ button.cancel-btn {
         document.querySelector('.cart-btn').onclick = function() {
             addToCart(brand, price);
         };
+
+        let cartContainer = document.getElementById('cart-container');
+    cartContainer.classList.add('hide');
     }
 
     function closeProduct() {
         document.getElementById('product-card').style.display = 'none';
         document.getElementById('product-card-overlay').style.display = 'none';
+
+        let cartContainer = document.getElementById('cart-container');
+    cartContainer.classList.remove('hide');
     }
 
     window.addEventListener("resize", function () {
