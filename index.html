@@ -85,6 +85,11 @@
                 height: 120px;
             }
         }
+        @media (max-width: 450px) {
+    .cart-container {
+        display: none; 
+    }
+}
         .product-card {
             display: none;
             position: fixed;
@@ -513,6 +518,16 @@ button.cancel-btn {
         document.getElementById('product-card').style.display = 'none';
         document.getElementById('product-card-overlay').style.display = 'none';
     }
+
+    window.addEventListener("resize", function () {
+    if (window.innerWidth > 450) {
+        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen altijd op grote schermen
+    } else if (document.getElementById("product-view").style.display === "block") {
+        document.getElementById("cart-container").style.display = "none"; // Verberg als product open is
+    } else {
+        document.getElementById("cart-container").style.display = "block"; // Toon winkelwagen als er geen product open is
+    }
+});
 
    function addToCart(brand, price) {
     if (!cart.some(item => item.product === 'Nike Sokken')) {
