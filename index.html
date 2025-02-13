@@ -432,6 +432,15 @@ button.cancel-btn:hover {
     
 <script>
 console.log(typeof emailjs);
+document.addEventListener("DOMContentLoaded", function() {
+    if (typeof emailjs === "undefined") {
+        console.error("❌ EmailJS is niet correct geladen!");
+        return;
+    }
+
+    emailjs.init("ueuhIBslUeTq4qXWs");  // Vervang dit met jouw echte EmailJS User ID
+    console.log("✅ EmailJS is correct geïnitialiseerd!");
+});
 
     console.log("User ID:", emailjs.init("ueuhIBslUeTq4qXWs"));
 
