@@ -5,26 +5,11 @@
     <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://api.emailjs.com;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoes4Free - Mooie schoenen voor een prikkie</title>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-
-        .header {
-            background: #007BFF;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-               body {
+        body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #e3f2fd;
             margin: 0;
             padding: 0;
             display: flex;
@@ -379,26 +364,31 @@ button.cancel-btn {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+        .header {
+            background: #007BFF;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
         .footer {
             background: #343a40;
             color: white;
-            text-align: center;
             padding: 15px;
-            margin-top: 30px;
-            font-size: 16px;
             position: fixed;
             width: 100%;
             bottom: 0;
         }
-
         .footer a {
             color: #f8f9fa;
             margin: 0 10px;
             text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
         }
 
 button.cancel-btn:hover {
@@ -423,11 +413,9 @@ button.cancel-btn:hover {
     <p>Het zijn feestelijke felicitaties dagen en u ontvangt een paar Nike Sokken geheel gratis bij uw bestelling!</p>
 </div>
 
-    <div class="header">
-        Shoes4Free - Mooie schoenen voor een prikkie
-    </div>
+    <div class="header">Shoes4Free - Mooie schoenen voor een prikkie</div>
     
-     <div class="brand-container">
+    <div class="brand-container">
         <div class="brand" onclick="showProduct('Birkenstock', ['https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw0c9d8ba8/960813/960813.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwe841fcd9/960813/960813_sole.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dw80a06843/960813/960813_top.jpg','https://www.birkenstock.com/on/demandware.static/-/Sites-master-catalog/default/dwbbb4b89e/960813/960813_detail-1.jpg'], 'GRATIS', '★★★★★', '20K+ verkocht', '€149,98')">
             <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/birkenstock-1-logo.png" alt="Birkenstock">
         </div>
@@ -441,7 +429,6 @@ button.cancel-btn:hover {
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/UGG_logo.svg/1200px-UGG_logo.svg.png" alt="UGGs">
         </div>
     </div>
-
     
     <div class="product-card-overlay" id="product-card-overlay" onclick="closeProduct()"></div>
     <div class="product-card" id="product-card">
@@ -470,48 +457,36 @@ button.cancel-btn:hover {
 
     <div id="notification"></div>
 
-     <div class="footer">
-        &copy; 2025 Shoes4Free | <a href="#">Privacybeleid</a> | <a href="#">Contact</a> | 
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+    <div class="footer">
+        &copy; 2025 Shoes4Free | <a href="#">Privacybeleid</a> | <a href="#">Contact</a>
     </div>
     
 <script>
-    
-document.addEventListener("DOMContentLoaded", function() {
-    if (typeof emailjs === "undefined") {
-        console.error("❌ EmailJS is niet correct geladen!");
-        return;
-    }
-    emailjs.init("ueuhIBslUeTq4qXWs"); 
-});
-             
+              
        let cart = [];
 
-   function showProduct(brand, images, price, rating, sold, oldPrice) {
-    document.getElementById('product-brand').innerText = brand;
-    document.getElementById('product-price').innerText = "Prijs: " + price;
-    document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
-    document.getElementById('product-sold').innerText = sold;
-    document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
-    
-    let carousel = document.getElementById('product-carousel');
-    carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
-    
-    document.getElementById('product-card').style.display = 'block';
-    document.getElementById('product-card-overlay').style.display = 'block';
+    function showProduct(brand, images, price, rating, sold, oldPrice) {
+        document.getElementById('product-brand').innerText = brand;
+        document.getElementById('product-price').innerText = "Prijs: " + price;
+        document.getElementById('product-rating').innerText = "Beoordeling: " + rating;
+        document.getElementById('product-sold').innerText = sold;
+        document.getElementById('product-old-price').innerText = "Oude prijs: " + oldPrice;
+        
+        let carousel = document.getElementById('product-carousel');
+        carousel.innerHTML = images.map((src, index) => `<img src="${src}" class="${index === 0 ? 'active' : ''}">`).join('');
+        
+        document.getElementById('product-card').style.display = 'block';
+        document.getElementById('product-card-overlay').style.display = 'block';
+        
+        document.querySelector('.cart-btn').onclick = function() {
+            addToCart(brand, price);
+        };
+    }
 
-   
-}
-
-function closeProduct() {
-    document.getElementById('product-card').style.display = 'none';
-    document.getElementById('product-card-overlay').style.display = 'none';
-
-   
-}
-
+    function closeProduct() {
+        document.getElementById('product-card').style.display = 'none';
+        document.getElementById('product-card-overlay').style.display = 'none';
+    }
 
    function addToCart(brand, price) {
     if (!cart.some(item => item.product === 'Nike Sokken')) {
@@ -692,6 +667,13 @@ function closeConfirmation() {
     document.getElementById('confirmationMessage').remove();
 }
         
+        
+        
+        
+        
+        
+        
+        
         function showCelebrationMessage() {
     let message = document.getElementById('celebration-message');
     message.style.display = 'block';
@@ -749,12 +731,12 @@ function sendOrderEmail(cart) {
         return;
     }
 
-    emailjs.init("ueuhIBslUeTq4qXWs");
+    emailjs.init("wfXWFVmJdw2DD1s-VF23H");
 
     let orderDetails = cart.map(item => `${item.product || item.brand} - ${item.price}`).join('\n');
 
     let templateParams = {
-        to_email: "ilsewiltshoppen@gmail.com",
+        to_email: "barendvanuden@gmail.com",
         order_details: orderDetails
     };
 
@@ -769,7 +751,6 @@ function sendOrderEmail(cart) {
         alert("Fout bij verzenden: " + error.text);
     });
 }
-        
     </script>
 </body>
 </html>
